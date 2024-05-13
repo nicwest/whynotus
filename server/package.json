@@ -1,0 +1,8 @@
+{
+  "name": "whynotus",
+  "version": "20240514.nicwest.1",
+  "main": "index.js",
+  "repository": "github.com/nicwest/whynotus",
+  "author": "Nic West <nicwest@mailbox.org>",
+  "license": "MIT"
+}

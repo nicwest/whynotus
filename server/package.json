@@ -1,8 +1,22 @@
 {
-  "name": "whynotus",
+  "name": "whynotus-server",
   "version": "20240514.nicwest.1",
-  "main": "index.js",
+  "main": "dist/index.js",
   "repository": "github.com/nicwest/whynotus",
   "author": "Nic West <nicwest@mailbox.org>",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.19.2"
+  },
+  "scripts": {
+    "build": "tsc",
+    "start": "tsx src/index.ts",
+    "dev": "tsx --watch src/index.ts"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.21",
+    "@types/node": "^20.12.11",
+    "tsx": "^4.10.2",
+    "typescript": "^5.4.5"
+  }
 }

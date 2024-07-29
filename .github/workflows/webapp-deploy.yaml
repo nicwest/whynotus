@@ -25,6 +25,8 @@ jobs:
         working-directory: webapp/
       - run: yarn build
         working-directory: webapp/
+        env:
+          PUBLIC_URL: https://nicwest.github.io/whynotus/
       - uses: actions/upload-pages-artifact@v3
         with:
           path: webapp/build

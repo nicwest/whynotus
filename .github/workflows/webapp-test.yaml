@@ -1,0 +1,16 @@
+name: Webapp tests
+run-name: Running tests for the webapp on changes
+on:
+  push:
+    paths:
+      - 'webapp/**'
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/setup-node@v2
+      - uses: actions/checkout@v4
+      - run: yarn install --dev
+        working-directory: webapp/
+      - run: yarn test
+        working-directory: webapp/

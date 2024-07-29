@@ -4,7 +4,6 @@ on:
   push:
     paths:
       - 'webapp/**'
-      - 'workflows/webapp-deploy.yaml'
     branches:
       - 'main'
 jobs:

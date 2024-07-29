@@ -22,9 +22,10 @@ jobs:
         working-directory: webapp/
       - run: yarn build
         working-directory: webapp/
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-pages-artifact@v3
         with:
           path: webapp/build
+
   deploy:
     needs: build
     permissions:

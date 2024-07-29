@@ -1,18 +1,40 @@
-name: Webapp tests
-run-name: Running tests for the webapp on changes
+name: Webapp build and deploy
+run-name: Building and deploying webapp to github pages
 on:
   push:
     paths:
       - 'webapp/**'
+    branches:
+      - 'main'
 jobs:
-  test:
+  build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/setup-node@v2
+      - uses: actions/setup-node@v4
         with:
           node-version: 22.x
       - uses: actions/checkout@v4
-      - run: yarn install --dev
+      - run: yarn build
         working-directory: webapp/
-      - run: yarn test
-        working-directory: webapp/
+      - uses: actions/upload-artifact@v4
+        with:
+          name: webapp
+          path: webapp/build/**
+          overwrite: true
+  deploy:
+    needs: build
+    permissions:
+      pages: write
+      id-token: write
+
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
+        with:
+          artifact_name: webapp

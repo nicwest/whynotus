@@ -1,20 +1,37 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+import {
+  createBrowserRouter,
+  RouterProvider,
+} from "react-router-dom";
 import {App, GlobalStyles} from './App';
+import {ErrorPage} from './ErrorPage';
 import {store} from './store'
 import { Provider } from 'react-redux'
+import {Say} from './features/say/components'
 
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 
-root.render(
-  <React.StrictMode>
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <App />,
+    errorElement: <ErrorPage />
+  },
+  {
+      path: "/say",
+      element: <Say />,
+  }
+]);
 
-  <Provider store={store}>
-    <GlobalStyles />
-    <App />
-    </Provider>
-  </React.StrictMode>
+root.render(
+    <React.StrictMode>
+        <Provider store={store}>
+            <GlobalStyles />
+            <RouterProvider router={router} />
+        </Provider>
+    </React.StrictMode>
 );

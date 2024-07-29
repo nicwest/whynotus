@@ -1,6 +1,6 @@
-import React from 'react';
-import logo from './assets/logo.png'
 import styled, {createGlobalStyle} from 'styled-components'
+import {MainMenu} from './MainMenu'
+import {PageContainer, PageContent} from './Page'
 
 export const GlobalStyles = createGlobalStyle`
     body,html {
@@ -28,43 +28,7 @@ export const GlobalStyles = createGlobalStyle`
     }
 `
 
-const Masthead = styled.header`
-    display: flex;
-    align-items: center;
 
-    img {
-        width: 100px;
-    }
-`
-
-const PageContainer = styled.div`
-    max-width: 1200px;
-    margin: 0 auto;
-`
-const PageContent = styled.div`
-
-p {
-    max-width: 40rem;
-}
-li {
-    max-width: 38rem;
-}
-`
-
-const MainMenu = styled.nav`
-
-`
-
-const HorizontalMenu = styled.div`
-    display: flex;
-    flex-direction: row;
-`
-
-const MenuItem = styled.a`
-    font-size: 20px;
-    font-weight: bold;
-    padding: 1rem;
-`
 
 const FakeJobSpec = styled.div`
     background-color: #DBDBDB;
@@ -86,28 +50,9 @@ const Strike = styled.span`
 `
 
 export function App() {
-    const loggedIn = true;
     return (
       <PageContainer>
-          <Masthead>
-            <img src={logo} className="App-logo" alt="logo" />
-            <MainMenu>
-                <HorizontalMenu>
-                    <MenuItem href="/say">Say Stuff</MenuItem>
-                    <MenuItem href="/hear">Hear Things</MenuItem>
-                    <MenuItem href="/learn">Learn Junk</MenuItem>
-                    {loggedIn ? 
-                        <>
-                        <MenuItem href="/me">Me</MenuItem>
-                        <MenuItem href="/team">Team</MenuItem>
-                        <MenuItem href="/logout">Log out</MenuItem>
-                        </>
-                        :
-                        <MenuItem href="/login">Login</MenuItem>
-                    }
-                </HorizontalMenu>
-            </MainMenu>
-          </Masthead>
+          <MainMenu />
           <PageContent>
             <h3>For potential employees:</h3>
             <p>How many times have you looked at a promising job description, but for one reason or another you didn't apply?</p>

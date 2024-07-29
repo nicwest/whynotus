@@ -14,15 +14,17 @@ jobs:
         with:
           node-version: 22.x
       - uses: actions/checkout@v4
+      - uses: actions/cache@v4
+        with:
+          path: webapp/node_modules
+          key: ${{ runner.os }}-node-${{ hashFiles('webapp/package-lock.json', 'webapp/yarn.lock') }}
       - run: yarn install --dev
         working-directory: webapp/
       - run: yarn build
         working-directory: webapp/
       - uses: actions/upload-artifact@v4
         with:
-          name: webapp
-          path: webapp/build/**
-          overwrite: true
+          path: webapp/build
   deploy:
     needs: build
     permissions:
@@ -38,5 +40,3 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
-        with:
-          artifact_name: webapp

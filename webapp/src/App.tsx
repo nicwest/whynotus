@@ -198,7 +198,7 @@ export function App() {
             <FakeSubTitle>https://linkedin.com/jobs/asik2j4oaow</FakeSubTitle>
 
             <p>I've always wanted to work at ACME Co, but sadly I started in
-            1975 when they were still called Gizmos, and I get the feeling you
+            1975 when Widgets were still called Gizmos, and I get the feeling you
             are looking for someone a bit fresher</p>
             </FakeJobSpec>
 

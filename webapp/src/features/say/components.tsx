@@ -1,8 +1,11 @@
 import {useState} from 'react';
 import styled from 'styled-components';
-import { Form } from "react-router-dom";
-import {MainMenu} from '../../MainMenu'
+import { Form, Link } from "react-router-dom";
+import {useSelector } from 'react-redux'
+
+import {MainMenu} from '../menu/components'
 import {PageContainer, PageContent} from '../../Page'
+import {getUser} from '../supabase/selectors'
 
 const FeedbackForm = styled(Form)`
 max-width: 40rem;
@@ -46,20 +49,19 @@ flex-direction: column;
 
 export function Say() {
 
+    const user = useSelector(getUser)
     const [url, setURL] = useState('');
     const [feedback, setFeedback] = useState('');
     const [anon, setAnon] = useState(true);
-    const [name, setName] = useState('');
-    const [email, setEmail] = useState('');
-    const [gender, setGender] = useState('');
-    const [age, setAge] = useState(18);
-    const [ethnicity, setEthnicity] = useState('');
 
 
     return (
         <PageContainer>
             <MainMenu />
             <PageContent>
+                {!user ? 
+                    <Link to="/signup">Signup!</Link>
+                :
                 <FeedbackForm method="post">
                     <Label>
                         URL
@@ -73,61 +75,69 @@ export function Say() {
                         Send feedback anonymously?
                         <input type="checkbox" checked={anon} onChange={() => setAnon(!anon)}/>
                     </Label>
-                    {anon ? <>
-
-                    <Label>
-                        Name
-                        <Input type="text" value={name} onChange={(e) => setName(e.target.value)} />
-                    </Label>
-                    <Label>
-                        Email
-                        <Input type="text" value={email} onChange={(e) => setEmail(e.target.value)} />
-                    </Label>
-                        <Label>
-                            Age
-                            <Input type="number" value={String(age)} onChange={(e) => setAge(Number(e.target.value))} />
-                        </Label>
-                        <Label>
-                            Gender
-                            <Select onChange={(e) => setGender(e.target.value)} >
-                                <option value="Prefer not to say">Prefer not to say</option>
-                                <option value="Female">Female</option>
-                                <option value="Male">Male</option>
-                                <option value="Other">Other</option>
-                                <option value="Meatpopsicle">Meatpopsicle</option>
-                            </Select>
-                        </Label>
-                        <Label>
-                            Enthnicity
-                            <Select onChange={(e) => setEthnicity(e.target.value)} >
-                                <option value="Prefer not to say">Prefer not to say</option>
-                                <option value="Asian">Asian</option>
-                                <option value="Arab">Arab</option>
-                                <option value="Black">Black</option>
-                                <option value="Mixed">Mixed</option>
-                                <option value="White">White</option>
-                                <option value="Other">Other</option>
-                                <option value="Klingon">Klingon</option>
-                            </Select>
-                        </Label>
-                        <Label>
-                            Education
-                            <Select onChange={(e) => setEthnicity(e.target.value)} >
-                                <option value="Prefer not to say">Prefer not to say</option>
-                                <option value="University/College">University/College</option>
-                                <option value="Apprenticeship">Apprenticeship</option>
-                                <option value="Vocational">Vocational</option>
-                                <option value="High School">High School</option>
-                                <option value="General">General</option>
-                                <option value="Other">Other</option>
-                                <option value="School of Hardknocks">School of Hard Knocks</option>
-                            </Select>
-                        </Label>
-
-                    </> : null}
                     <SubmitButton type="submit">Send It!</SubmitButton>
                 </FeedbackForm>
+                }
             </PageContent>
         </PageContainer>
     )
 }
+
+// const [name, setName] = useState('');
+// const [email, setEmail] = useState('');
+// const [gender, setGender] = useState('');
+// const [age, setAge] = useState(18);
+// const [ethnicity, setEthnicity] = useState('');
+// {!anon ? <>
+//
+// <Label>
+//     Name
+//     <Input type="text" value={name} onChange={(e) => setName(e.target.value)} />
+// </Label>
+// <Label>
+//     Email
+//     <Input type="text" value={email} onChange={(e) => setEmail(e.target.value)} />
+// </Label>
+//     <Label>
+//         Age
+//         <Input type="number" value={String(age)} onChange={(e) => setAge(Number(e.target.value))} />
+//     </Label>
+//     <Label>
+//         Gender
+//         <Select onChange={(e) => setGender(e.target.value)} >
+//             <option value="Prefer not to say">Prefer not to say</option>
+//             <option value="Female">Female</option>
+//             <option value="Male">Male</option>
+//             <option value="Other">Other</option>
+//             <option value="Meatpopsicle">Meatpopsicle</option>
+//         </Select>
+//     </Label>
+//     <Label>
+//         Enthnicity
+//         <Select onChange={(e) => setEthnicity(e.target.value)} >
+//             <option value="Prefer not to say">Prefer not to say</option>
+//             <option value="Asian">Asian</option>
+//             <option value="Arab">Arab</option>
+//             <option value="Black">Black</option>
+//             <option value="Mixed">Mixed</option>
+//             <option value="White">White</option>
+//             <option value="Other">Other</option>
+//             <option value="Klingon">Klingon</option>
+//         </Select>
+//     </Label>
+//     <Label>
+//         Education
+//         <Select onChange={(e) => setEthnicity(e.target.value)} >
+//             <option value="Prefer not to say">Prefer not to say</option>
+//             <option value="University/College">University/College</option>
+//             <option value="Apprenticeship">Apprenticeship</option>
+//             <option value="Vocational">Vocational</option>
+//             <option value="High School">High School</option>
+//             <option value="General">General</option>
+//             <option value="Other">Other</option>
+//             <option value="School of Hardknocks">School of Hard Knocks</option>
+//         </Select>
+//     </Label>
+//
+// </> : null}
+//

@@ -1,4 +1,4 @@
-import {MainMenu} from './MainMenu'
+import {MainMenu} from './features/menu/components'
 import {PageContainer, PageContent} from './Page'
 import { useRouteError, isRouteErrorResponse } from "react-router-dom";
 

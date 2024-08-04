@@ -1,5 +1,5 @@
 import styled, {createGlobalStyle} from 'styled-components'
-import {MainMenu} from './MainMenu'
+import {MainMenu} from './features/menu/components'
 import {PageContainer, PageContent} from './Page'
 
 export const GlobalStyles = createGlobalStyle`

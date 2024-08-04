@@ -1,11 +1,18 @@
-import { configureStore } from '@reduxjs/toolkit'
+import {configureStore, combineReducers} from '@reduxjs/toolkit'
 import {sayReducer} from './features/say/slices'
+import {supabaseReducer, supabaseMiddleware} from './features/supabase/slices'
+
+const rootReducer = combineReducers({
+        say: sayReducer,
+        supabase: supabaseReducer,
+    })
 
 export const store = configureStore({
-  reducer: {say: sayReducer}
+    reducer: rootReducer,
+    middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(supabaseMiddleware)
 })
 
-// Infer the `RootState` and `AppDispatch` types from the store itself
-export type RootState = ReturnType<typeof store.getState>
-// Inferred type: {posts: PostsState, comments: CommentsState, users: UsersState}
+export type RootState = ReturnType<typeof rootReducer>
 export type AppDispatch = typeof store.dispatch
+
+

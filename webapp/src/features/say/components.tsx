@@ -19,11 +19,11 @@ font-family: monospace;
 padding: 0.4rem;
 `
 
-const Select = styled.select`
-font-size: 1.2rem;
-font-family: monospace;
-padding: 0.4rem;
-`
+// const Select = styled.select`
+// font-size: 1.2rem;
+// font-family: monospace;
+// padding: 0.4rem;
+// `
 
 const Feedback = styled.textarea`
 font-size: 1.2rem;
